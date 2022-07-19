@@ -1,5 +1,5 @@
-@extends('admin.admin_layouts.admin_default')
-@section('admin_content')
+@extends('admin.layouts.default')
+@section('contents')
   <div>
 
     <div class="teacher_list">
@@ -30,11 +30,11 @@
     <div class="teacher_add">
       <form action="{{ route('admin.add') }}" method="POST">
       @csrf
+        <h2>教員の追加</h2>
         <div>
           <label>名前：</label><input type="text" name="name">
         </div>
         <div>
-          <h2>教員の追加</h2>
           <label>担当クラス：</label>
           <select name="team_id">
             @foreach($team_lists as $team_list)

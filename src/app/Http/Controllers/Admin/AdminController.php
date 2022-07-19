@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Teacher;
@@ -9,13 +10,6 @@ use Illuminate\Auth\Events\Registered;
 
 class AdminController extends Controller
 {
-    public function show()
-    {
-      $team_lists = Team::all();
-      $teachers = Teacher::all();
-      return view('admin.admin', compact('team_lists', 'teachers'));
-    }
-
     public function add(Request $request)
     {
       $user = Teacher::create([
@@ -27,7 +21,7 @@ class AdminController extends Controller
 
       event(new Registered($user));
 
-      return redirect()->route('admin.show');
+      return redirect()->route('admin.dashboard');
     }
 
     public function delete(Request $request)
@@ -35,7 +29,7 @@ class AdminController extends Controller
       $teacher_delete = Teacher::find($request['id']);
       $teacher_delete -> delete();
 
-      return redirect()->route('admin.show');
+      return redirect()->route('admin.dashboard');
     }
 
     public function update_show($id)

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Teacher;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AttendanceRequest;
@@ -47,7 +48,7 @@ class AttendanceController extends Controller
         }
         $update_attendance->save();
 
-        return redirect()->route('teacher.show');
+        return redirect()->route('teacher.dashboard');
     }
 
     public function user_show()

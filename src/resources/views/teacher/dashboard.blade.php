@@ -1,5 +1,5 @@
-@extends('admin.admin_layouts.admin_default')
-@section('admin_content')
+@extends('teacher.layouts.default')
+@section('contents')
 <link rel="stylesheet" href="{{ asset('css/teacher.css') }}">
 
 <div class="teacher">
@@ -15,9 +15,9 @@
       @endif
       <ul>
         @foreach($team_users as $team_user)
-        <li><a href="/admin/user/detail/{{ $team_user['id'] }}">{{ $team_user['name']}}</a></li>
+        <li><a href="/teacher/detail/{{ $team_user['id'] }}">{{ $team_user['name']}}</a></li>
         <li>
-          <form action="{{ route('attendance.add') }}" method="POST">
+          <form action="{{ route('teacher.attendance.add') }}" method="POST">
           @csrf
             <input type="date" name="date">
             <input type="text" name="id" value="{{ $team_user['id'] }}" hidden>
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="total_attendance">
+  {{-- <div class="total_attendance">
     <h3>出席簿</h3>
     <div>
       <form action="{{ route('teacher.search') }}" method="POST">
@@ -70,6 +70,49 @@
       @endforeach
     </table>
     @endforeach
+  </div> --}}
+
+  <div class="user_register">
+    <h3>園児の登録</h3>
+    <form action="{{ route('user.register') }}" method="POST">
+    @csrf
+      <div>
+        <label>名前：</label><input type="text" name="name">
+      </div>
+      <div>
+        <label>クラス：</label>
+        <select name="team_id">
+          @foreach($team_lists as $team_list)
+            <option value="{{ $team_list['id'] }}">{{ $team_list['name'] }}</option>
+          @endforeach
+        </select>
+      </div>
+      <div>
+        <label>性別：</label>
+        <select name="gender_id">
+          @foreach($gender_lists as $gender_list)
+            <option value="{{ $gender_list['id'] }}">{{ $gender_list['name'] }}</option>
+          @endforeach
+        </select>
+      </div>
+      <div>
+        <label>誕生日：</label><input type="date" name="birthday">
+      </div>
+      <div>
+        <label>メールアドレス：</label><input type="email" name="email">
+      </div>
+      <div>
+        <label>パスワード：</label><input type="text" name="password">
+      </div>
+      <div>
+        <button>追加</button>
+      </div>
+    </form>
   </div>
-</div>
+
+  <div>
+    <a href="/teacher/mail">メールの送信はこちらから</a>
+  </div>
+
+
 @endsection

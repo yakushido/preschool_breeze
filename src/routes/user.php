@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\AttendanceController;
+
 use App\Http\Controllers\User\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\User\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\User\Auth\EmailVerificationNotificationController;
@@ -21,20 +24,25 @@ use App\Http\Controllers\User\Auth\VerifyEmailController;
 |
 */
 
-Route::get('/', function () {
-  return view('user.welcome');
-})->name('welcome');
+// Route::get('/', function () {
+//   return view('user.welcome');
+// })->name('welcome');
 
-Route::middleware('auth:users')->group(function () {
+Route::get('/', [HomeController::class,'home'])->name('home');
+
+Route::middleware('auth:users', 'verified')->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  Route::get('/attendance', [AttendanceController::class, 'show'])->name('attendance');
+  Route::post('/attendance/add', [AttendanceController::class, 'add'])->name('attendance.add');
+  Route::get('/attendance/done', [AttendanceController::class, 'done'])->name('attendance.done');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
-  ->middleware('guest')
-  ->name('register');
+  ->middleware('guest');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
-  ->middleware('guest');
+  ->middleware('guest')
+  ->name('register');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
   ->middleware('guest')
@@ -81,3 +89,5 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
   ->middleware('auth:users')
   ->name('logout');
+
+

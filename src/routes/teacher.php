@@ -10,10 +10,10 @@ use App\Http\Controllers\teacher\Auth\PasswordResetLinkController;
 use App\Http\Controllers\teacher\Auth\RegisteredUserController;
 use App\Http\Controllers\teacher\Auth\VerifyEmailController;
 use App\Http\Controllers\teacher\DashboardController;
+use App\Http\Controllers\teacher\AttendanceController;
+use App\Http\Controllers\teacher\MailController;
 
-Route::get('/', function () {
-  return view('welcome');
-})->name('welcome');
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 Route::middleware('auth:teachers')->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -26,12 +26,9 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 Route::post('/register', [RegisteredUserController::class, 'store'])
   ->middleware('guest');
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])
   ->middleware('guest')
   ->name('login');
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-  ->middleware('guest');
 
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
   ->middleware('guest')
@@ -72,4 +69,15 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
   ->middleware('auth:teachers')
   ->name('logout');
 
+
+// 要認証(Teacher)
+Route::group(['middleware' => 'auth:teachers'], function () {
+  Route::post('/attendance/add', [AttendanceController::class, 'add'])->name('attendance.add');
+  Route::post('/attendance/delete/{id}', [AttendanceController::class, 'delete'])->name('attendance.delete');
+  Route::post('/attendance/update/{id}', [AttendanceController::class, 'update'])->name('attendance.update');
+  Route::get('/detail/{id}', [DashboardController::class,'detail'])->name('detail');
+  Route::get('/mail',[MailController::class,'index']);
+  Route::post('/mail/confirm', [MailController::class,'confirm']);
+  Route::post('/mail/send', [MailController::class,'send']);
+});
 

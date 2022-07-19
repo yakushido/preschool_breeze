@@ -11,12 +11,15 @@
 <body>
     <header>
         <h1>ABC保育園</h1>
-        <div>
+        <div class="header_login">
             @if( Auth::check() )
             <h2>{{ Auth::user()['name'] }} 様</h2>
-            <a href="">logout</a>
+            <form action="{{ route('user.logout') }}" method="POST">
+                @csrf
+                <button>logout</button>
+            </form>
             @elseif( !Auth::check() )
-            <a href="{{ route('login') }}">login</a>
+            <a href="{{ route('user.login') }}"><button>login</button></a>
             @endif
         </div>
 
