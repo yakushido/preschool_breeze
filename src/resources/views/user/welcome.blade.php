@@ -155,4 +155,8 @@
     <div class='attendance'>
         <a href="/attendance">こちらからお休みの連絡ができます</a>
     </div>
+
+    <div>
+        {!! QrCode::generate('/') !!}
+    </div>
 @endsection
