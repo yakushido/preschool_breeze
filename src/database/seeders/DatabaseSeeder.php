@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             AdminsTableSeeder::class,
             TeachersTableSeeder::class,
             UsersTableSeeder::class,
+            ClothsTableSeeder::class,
+            SizesTableSeeder::class,
+            StocksTableSeeder::class,
         ]);
     }
 }

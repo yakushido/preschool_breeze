@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
     <title>Document</title>
+    @livewireStyles
 </head>
 <body>
     <header>
@@ -29,5 +30,6 @@
         @yield('contents')
     </main>
 
+    @livewireScripts
 </body>
 </html>

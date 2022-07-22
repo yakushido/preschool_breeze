@@ -13,6 +13,8 @@ use App\Http\Controllers\User\Auth\NewPasswordController;
 use App\Http\Controllers\User\Auth\PasswordResetLinkController;
 use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
+use App\Http\Controllers\User\ShopController;
+use App\Http\Controllers\User\PaymentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,17 @@ Route::middleware('auth:users', 'verified')->group(function () {
   Route::get('/attendance', [AttendanceController::class, 'show'])->name('attendance');
   Route::post('/attendance/add', [AttendanceController::class, 'add'])->name('attendance.add');
   Route::get('/attendance/done', [AttendanceController::class, 'done'])->name('attendance.done');
+  Route::get('/shop', [ShopController::class,'index']);
+  Route::post('/shop/cart', [ShopController::class,'show'])->name('shop.cart');
+  Route::post('/shop/add', [ShopController::class,'add'])->name('shop.add');
+  // 決済ボタンを表示するページ
+  // Route::get('/', 'PaymentsController@index')->name('index');
+
+  // Stripeの処理
+  Route::post('/payment', [PaymentsController::class,'payment'])->name('payment');
+
+  // 決済完了ページ
+  Route::get('/complete', [PaymentsController::class,'complete'])->name('complete');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
