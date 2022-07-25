@@ -1,0 +1,54 @@
+.flex{
+  display: flex;
+}
+.shop{
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin-right: 10px;
+}
+
+.shop select,
+.shop input {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+}
+.shop select:hover,
+.shop input:hover,
+.shop button:hover {
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+.shop table,
+.shop_log table{
+  text-align: center;
+  margin: 10px auto;
+}
+.shop td,
+.shop_log td{
+  padding: 5px;
+}
+.shop button {
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.shop>div>div{
+  margin: 10px 0;
+}
+
+.shop_log{
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+}
+.shop_log h3{
+  text-align: center;
+}
+.shop_log td{
+  border-bottom: 1px solid black;
+}

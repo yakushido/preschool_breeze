@@ -24,14 +24,4 @@ class ShopController extends Controller
 
         return view('user.cart', compact('stock'));
     }
-
-    public function add(Request $request)
-    {
-        Purchase::create([
-            'stock_id' => $request->stock_id,
-            'user_id' => Auth::id()
-        ]);
-
-        return view('user.done');
-    }
 }

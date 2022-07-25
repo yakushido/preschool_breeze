@@ -13,11 +13,6 @@ use App\Models\Purchase;
 
 class PaymentsController extends Controller
 {
-    public function index()
-    {
-        return view('index');
-    }
-
     public function payment(Request $request)
     {
         try {

@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $blogs = Blog::paginate(4);
+        $blogs = Blog::orderBy('created_at','desc')-> paginate(4);
         return view('user.welcome', compact('blogs'));
     }
 }

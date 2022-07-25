@@ -1,0 +1,52 @@
+
+
+
+/* 毎日ブログ */
+.blog{
+  text-align: center;
+  background-color: #FFF9CA;
+  border-radius: 15px;
+}
+.blog h3 {
+  height: 25px;
+  line-height: 25px;
+  font-size: 25px;
+  background-color: #ebffa4;
+  padding: 5px;
+  margin: 10px 0 10px 0;
+  border-radius: 15px 15px 0 0;
+}
+.blog a{
+  text-decoration: none;
+}
+.blog a:hover{
+  box-shadow: 1px 1px 5px black;
+  transform: scale(1.02);
+}
+.blog>div{
+  padding-bottom: 10px;
+}
+.blog_card{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.blog_card_item{
+  width: 40%;
+  margin: 10px;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 10px;
+}
+.blog_card_item h4{
+  color: black;
+  background-color: #FFF9CA;
+  line-height: 20px;
+  font-size: 20px;
+  border-radius: 10px 10px 0 0;
+}
+.blog_card_item img{
+  border-radius: 0 0 10px 10px;
+}
+
+
+

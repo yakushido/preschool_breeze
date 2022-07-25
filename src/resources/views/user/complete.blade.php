@@ -1,7 +1,9 @@
 @extends('user.layouts.default')
 @section('contents')
-<body>
-    <p>決済が完了しました！</p>
+<link rel="stylesheet" href="{{ asset('css/user/complete.css') }}">
+
+<div class="complete">
+    <h3>決済が完了しました！</h3>
     <a href="{{ route('user.dashboard') }}">戻る</a>
-</body>
+</div>
 @endsection

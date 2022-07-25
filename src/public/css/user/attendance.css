@@ -1,0 +1,52 @@
+.flex{
+  display: flex;
+}
+h3{
+  text-align: center;
+}
+.attendance{
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin-right: 10px;
+}
+.attendance>form>div{
+  margin: 10px 0;
+}
+.attendance>form>div:last-child{
+  text-align: end;
+}
+.attendance button{
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.attendance select,
+.attendance input{
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+}
+.attendance select:hover,
+.attendance input:hover,
+.attendance button:hover{
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+
+.attendance_log {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+}
+.attendance_log table{
+  text-align: center;
+  margin: 10px auto;
+}
+.attendance_log td{
+  padding: 5px;
+  border-bottom: 1px solid black;
+}

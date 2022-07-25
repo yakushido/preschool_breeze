@@ -1,0 +1,22 @@
+.cart{
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+}
+.cart h3{
+  text-align: center;
+}
+.cart table {
+  text-align: center;
+  margin: 10px auto;
+}
+.cart td {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.stripe{
+  text-align: end;
+}

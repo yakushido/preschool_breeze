@@ -1,0 +1,28 @@
+.dashboard{
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+  margin: 10px auto;
+}
+.dashboard>div:first-child {
+  margin-bottom: 10px;
+}
+.dashboard a{
+  text-decoration: none;
+}
+.dashboard a:hover {
+  border-bottom: solid 2px black;
+  animation: dashboard_border_anim 0.3s linear forwards;
+}
+
+@keyframes dashboard_border_anim {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}

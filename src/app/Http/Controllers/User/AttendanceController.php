@@ -76,4 +76,5 @@ class AttendanceController extends Controller
     {
         return view('user.attendance_done');
     }
+
 }

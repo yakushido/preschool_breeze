@@ -1,6 +1,6 @@
 @extends('user.layouts.default')
 @section('contents')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user/index.css') }}">
     <div class="blog">
         <div>
             <img src="/storage/preschool.jpg" alt="保育園image">

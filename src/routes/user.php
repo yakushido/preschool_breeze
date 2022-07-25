@@ -15,6 +15,7 @@ use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\User\PaymentsController;
+use App\Http\Controllers\User\BlogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,27 +27,28 @@ use App\Http\Controllers\User\PaymentsController;
 |
 */
 
-// Route::get('/', function () {
-//   return view('user.welcome');
-// })->name('welcome');
-
+//トップページ
 Route::get('/', [HomeController::class,'home'])->name('home');
 
+// ブログ
+Route::get('/blog/{id}', [BlogController::class, 'show']);
+
 Route::middleware('auth:users', 'verified')->group(function () {
+  // マイページ
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+  // 欠席連絡
   Route::get('/attendance', [AttendanceController::class, 'show'])->name('attendance');
   Route::post('/attendance/add', [AttendanceController::class, 'add'])->name('attendance.add');
   Route::get('/attendance/done', [AttendanceController::class, 'done'])->name('attendance.done');
+
+  // 制服販売
   Route::get('/shop', [ShopController::class,'index']);
   Route::post('/shop/cart', [ShopController::class,'show'])->name('shop.cart');
   Route::post('/shop/add', [ShopController::class,'add'])->name('shop.add');
-  // 決済ボタンを表示するページ
-  // Route::get('/', 'PaymentsController@index')->name('index');
 
-  // Stripeの処理
+  // 決済
   Route::post('/payment', [PaymentsController::class,'payment'])->name('payment');
-
-  // 決済完了ページ
   Route::get('/complete', [PaymentsController::class,'complete'])->name('complete');
 });
 

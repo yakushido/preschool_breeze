@@ -11,17 +11,31 @@
 </head>
 <body>
     <header>
-        <h1>ABC保育園</h1>
-        <div class="header_login">
-            @if( Auth::check() )
-            <h2>{{ Auth::user()['name'] }} 様</h2>
-            <form action="{{ route('user.logout') }}" method="POST">
-                @csrf
-                <button>logout</button>
-            </form>
-            @elseif( !Auth::check() )
-            <a href="{{ route('user.login') }}"><button>login</button></a>
-            @endif
+            <div class="menu__humbergar" id="menu__humbergar">
+                <span class="menu__humbergar__bar--top"></span>
+                <span class="menu__humbergar__bar--middle"></span>
+                <span class="menu__humbergar__bar--bottom"></span>
+            </div>
+            <h1>ABC保育園</h1>
+            <div class="header_login">
+                @if( Auth::check() )
+                <h2>{{ Auth::user()['name'] }} 様</h2>
+                <form action="{{ route('user.logout') }}" method="POST">
+                    @csrf
+                    <button>logout</button>
+                </form>
+                @elseif( !Auth::check() )
+                <a href="{{ route('user.login') }}"><button>login</button></a>
+                @endif
+            </div>
+
+        <div class="mask" id="mask">
+            <ul class="mask-menu__lists">
+                <li><a href="/">Home</a></li>
+                @if( Auth::check() )
+                <li><a href="{{ route('user.dashboard') }}">Mypage</a></li>
+                @endif
+            </ul>
         </div>
 
     </header>
@@ -29,6 +43,15 @@
     <main>
         @yield('contents')
     </main>
+
+    <script>
+        const menu = document.getElementById("menu__humbergar");
+        const mask = document.getElementById("mask");
+        menu.addEventListener('click',() => {
+            menu.classList.toggle('active');
+            mask.classList.toggle('active');
+        });
+    </script>
 
     @livewireScripts
 </body>
