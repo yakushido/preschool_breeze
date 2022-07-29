@@ -11,7 +11,6 @@ class ToUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected string $name;
     protected string $body;
 
     /**
@@ -19,9 +18,8 @@ class ToUserMail extends Mailable
      *
      * @return void
      */
-    public function __construct(string $name, string $body)
+    public function __construct(string $body)
     {
-        $this->name = $name;
         $this->body = $body;
     }
 
@@ -36,7 +34,6 @@ class ToUserMail extends Mailable
                     ->from('sample@example.com')
                     ->subject('ABC保育園です。')
                     ->with([
-                        'name' => $this->name,
                         'body' => $this->body
                     ]);
     }

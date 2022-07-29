@@ -1,26 +1,36 @@
 @extends('teacher.layouts.default')
 @section('contents')
+<link rel="stylesheet" href="{{ asset('css/teacher/detail.css') }}">
 
   <div class="detail">
-    <h2>生徒詳細</h2>
-    <table>
-      <tr>
-        <td>名前：</td>
-        <td>{{ $user['name'] }}</td>
-      </tr>
-      <tr>
-        <td>性別：</td>
-        <td>{{ $user['gender']['name'] }}</td>
-      </tr>
-      <tr>
-        <td>メールアドレス：</td>
-        <td>{{ $user['email'] }}</td>
-      </tr>
-      <tr>
-        <td>誕生日：</td>
-        <td>{{ $user['birthday'] }}</td>
-      </tr>
-    </table>
+    <h3>生徒詳細</h3>
+    <div>
+      <label>名前：</label>
+      <p>{{ $user['name'] }}</p>
+    </div>
+    <div>
+      <label>性別：</label>
+      <p>{{ $user['gender']['name'] }}</p>
+    </div>
+    <div>
+      <label>メールアドレス：</label>
+      <p>{{ $user['email'] }}</p>
+    </div>
+    <div>
+      <label>誕生日：</label>
+      <p>{{ $user['birthday'] }}</p>
+    </div>
+    <div>
+      <label>クラス</label>
+      <p>{{ $user['team']['name'] }}</p>
+    </div>
+    <div class="flex">
+      <a href="/teacher/detail/update/{{ $user['id'] }}"><button class="update_btn">更新</button></a>
+      <form action="{{ route('teacher.detail.delete',$user['id']) }}" method="POST">
+      @csrf
+        <button class="delete_btn">削除</button>
+      </form>
+    </div>
   </div>
 
 @endsection

@@ -1,0 +1,39 @@
+.mail {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+}
+.mail h3{
+  text-align: center;
+}
+.mail>form>div{
+  margin-top: 10px;
+}
+.mail textarea,
+.mail select{
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+.mail select{
+  height: 30px;
+}
+.mail textarea{
+  height: 60px;
+}
+.mail select:hover,
+.mail textarea:hover,
+.mail button:hover{
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+.mail_btn{
+  text-align: end;
+}
+.mail_btn button{
+  background-color: #FEA82F;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

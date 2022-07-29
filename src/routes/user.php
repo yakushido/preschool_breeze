@@ -52,8 +52,9 @@ Route::middleware('auth:users', 'verified')->group(function () {
   Route::get('/complete', [PaymentsController::class,'complete'])->name('complete');
 });
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-  ->middleware('guest');
+Route::get('user/register', [RegisteredUserController::class, 'create'])
+  ->middleware('guest')
+  ->name('register.show');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
   ->middleware('guest')

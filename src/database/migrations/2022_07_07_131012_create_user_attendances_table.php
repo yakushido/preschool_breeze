@@ -17,7 +17,7 @@ class CreateUserAttendancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("attendance_id");
-            $table->unsignedBigInteger("reason_id");
+            $table->unsignedBigInteger("reason_id")->nullable(True);
             $table->date('date');
             $table->timestamps();
 

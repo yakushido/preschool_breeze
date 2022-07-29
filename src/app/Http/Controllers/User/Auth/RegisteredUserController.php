@@ -18,9 +18,9 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function show()
     {
-        return view('auth.register');
+        return view('user.auth.register');
     }
 
     /**

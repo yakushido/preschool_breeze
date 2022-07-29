@@ -18,34 +18,47 @@ class AttendanceController extends Controller
             UserAttendance::create([
                 'user_id' => $request->id,
                 'attendance_id' => 1,
-                'date' => $request->date
+                'date' => $request->date,
+                'reason_id' => null
             ]);
             } elseif ($request->has('absence')) {
                 UserAttendance::create([
                     'user_id' => $request->id,
                     'attendance_id' => 2,
-                    'date' => $request->date
+                    'date' => $request->date,
+                    'reason_id' => $request->reason
                 ]);
             }
-            return redirect()->route('teacher.show');
+            return redirect()->route('teacher.dashboard');
     }
 
     public function delete($id)
     {
         UserAttendance::find($id)->delete();
 
-        return redirect()->route('teacher.show');
+        return redirect()->route('teacher.dashboard');
     }
 
-    public function update($id)
+    public function update_show($id)
+    {
+        $user_attendance = UserAttendance::find($id);
+        $attendances = Attendance::all();
+        $reasons = Reason::all();
+
+        return view('teacher.update',compact('user_attendance','attendances','reasons'));
+    }
+
+    public function update(Request $request, $id)
     {
         $update_attendance = UserAttendance::find($id);
 
-        if($update_attendance['attendance_id'] === 1) {
-            $update_attendance['attendance_id'] = 2;
-        }elseif ($update_attendance['attendance_id'] === 2) {
-            $update_attendance['attendance_id'] = 1;
+        $update_attendance['attendance_id'] = $request['attendance_id'];
+        $update_attendance['reason_id'] = $request['reason_id'];
+
+        if($request['attendance_id'] === 1){
+            $update_attendance['reason_id'] = null;
         }
+
         $update_attendance->save();
 
         return redirect()->route('teacher.dashboard');

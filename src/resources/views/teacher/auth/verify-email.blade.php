@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -36,4 +36,8 @@
             </form>
         </div>
     </x-auth-card>
-</x-guest-layout>
+</x-guest-layout> --}}
+<div>
+    <p>仮登録が完了しました。</p>
+    <a href="{{ route('teacher.dashboard') }}">戻る</a>
+</div>

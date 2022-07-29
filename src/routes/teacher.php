@@ -11,20 +11,27 @@ use App\Http\Controllers\teacher\Auth\RegisteredUserController;
 use App\Http\Controllers\teacher\Auth\VerifyEmailController;
 use App\Http\Controllers\teacher\DashboardController;
 use App\Http\Controllers\teacher\AttendanceController;
+use App\Http\Controllers\teacher\DetailController;
 use App\Http\Controllers\teacher\MailController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 Route::middleware('auth:teachers')->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  Route::post('/search',[DashboardController::class,'search'])->name('search');
+  Route::post('/attendance/update',[AttendanceController::class,'update'])->name('attendance.update');
+  Route::post('/attendance/delete',[AttendanceController::class,'delete'])->name('attendance.delete');
+  // 詳細
+  Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail.index');
+  Route::get('/detail/update/{id}',[DetailController::class,'update_show'])->name('detail.update.show');
+  Route::post('/deteil/update/{id}',[DetailController::class,'update'])->name('detail.update');
+  Route::post('/detail/delete/{id}' ,[DetailController::class, 'delete'])->name('detail.delete');
 });
-
-Route::get('/register', [RegisteredUserController::class, 'create'])
-  ->middleware('guest')
-  ->name('register');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
   ->middleware('guest');
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create']);
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
   ->middleware('guest')
@@ -74,10 +81,11 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::group(['middleware' => 'auth:teachers'], function () {
   Route::post('/attendance/add', [AttendanceController::class, 'add'])->name('attendance.add');
   Route::post('/attendance/delete/{id}', [AttendanceController::class, 'delete'])->name('attendance.delete');
+  Route::get('/attendance/update/{id}', [AttendanceController::class, 'update_show']);
   Route::post('/attendance/update/{id}', [AttendanceController::class, 'update'])->name('attendance.update');
-  Route::get('/detail/{id}', [DashboardController::class,'detail'])->name('detail');
+  
   Route::get('/mail',[MailController::class,'index']);
-  Route::post('/mail/confirm', [MailController::class,'confirm']);
+  Route::post('/mail/confirm', [MailController::class,'confirm'])->name('mail.confirm');
   Route::post('/mail/send', [MailController::class,'send']);
 });
 

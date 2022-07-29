@@ -1,0 +1,40 @@
+.detail_update {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+}
+
+.detail_update h3 {
+  text-align: center;
+}
+
+.detail_update>form>div {
+  margin: 10px 0;
+}
+
+.detail_update input,
+.detail_update select {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+}
+
+.detail_update button {
+  height: 30px;
+  width: 60px;
+  background-color: #E6B325;
+}
+
+.update_btn {
+  text-align: end;
+}
+
+button:hover,
+.detail_update input:hover,
+.detail_update select:hover {
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}

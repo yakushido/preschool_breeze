@@ -1,0 +1,39 @@
+.detail {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+}
+.detail h3{
+  text-align: center;
+}
+.detail>div{
+  margin: 10px 0;
+}
+.detail p{
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+  line-height: 30px;
+  background-color: #fff;
+}
+.flex{
+  display: flex;
+  justify-content: end;
+}
+.detail button {
+  height: 30px;
+  width: 60px;
+}
+.update_btn {
+  background-color: #E6B325;
+}
+.delete_btn {
+  background-color: #FFC4C4;
+  margin-left: 10px;
+}
+button:hover {
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}

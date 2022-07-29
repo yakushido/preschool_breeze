@@ -1,0 +1,40 @@
+.update {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+}
+.update h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.update select,
+.update input,
+.update p {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+}
+.update p{
+  line-height: 30px;
+  background-color: #fff;
+}
+.update select:hover,
+.update input:hover,
+.update button:hover {
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+.update>form>div {
+  margin: 10px 0;
+}
+.update_btn{
+  text-align: end;
+}
+.update_btn button {
+  background-color: #E6B325;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

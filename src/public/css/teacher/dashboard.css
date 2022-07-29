@@ -1,0 +1,109 @@
+.flex{
+  display: flex;
+}
+li{
+  list-style: none;
+}
+input:hover,
+select:hover,
+button:hover{
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+h3{
+  text-align: center;
+  margin: 5px;
+}
+.user_list {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  margin-right: 10px;
+}
+.user_list>ul>li>form>div{
+  margin: 5px 0;
+}
+.user_list input[type="date"],
+.user_list select{
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 50%;
+}
+.attend_btn{
+  height: 30px;
+  width: 20%;
+  background-color: #FEA82F;
+}
+.absence_btn{
+  height: 30px;
+  width: 20%;
+  background-color: #FFC288;
+}
+
+.total_attendance {
+  box-shadow: 1px 1px 3px black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+}
+.total_attendance input {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 45%;
+}
+.total_attendance button{
+  height: 30px;
+  width: 60px;
+}
+.search_btn{
+  text-align: end;
+  margin-top: 5px;
+}
+.total_attendance table {
+  text-align: center;
+  margin: 10px auto;
+}
+
+.total_attendance td {
+  padding: 5px;
+}
+.total_attendance td:nth-child(4n-3){
+  border-bottom: 1px solid black;
+}
+.total_attendance td:nth-child(4n-2) {
+  border-bottom: 1px solid black;
+}
+.search_btn button{
+  background-color: #B09B71;
+}
+.update_btn{
+  background-color: #E6B325;
+}
+.delete_btn {
+  background-color: #FFC4C4;
+}
+
+.mail{
+  margin-top: 10px;
+  text-align: center;
+}
+.mail a{
+  text-decoration: none;
+}
+.mail>a:hover {
+  border-bottom: solid 2px black;
+  animation: border_anim 0.3s linear forwards;
+}
+
+@keyframes border_anim {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}

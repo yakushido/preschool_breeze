@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <div>
-      <h2 class="">メール送信フォーム</h2>
-      <form method="post" action="/teacher/mail/send">
-        @csrf
-        <div>
-          <input type="hidden" name="name" value="{{ $name }}">
-          <p>名前：<br>{{ $name }}</p>
-        </div>
-        <div>
-          <input type="hidden" name="email" value="{{ $email }}">
-          <p>宛先：<br>{{ $email }}</p>
-        </div>
-        <div>
-          <input type="hidden" name="body" value="{{ $body }}">
-          <p>本文：<br>{{ $body }}</p>
-        </div>
-        <button type="submit">送信</button>
-      </form>
-    </div>
-</body>
-</html>
+@extends('teacher.layouts.default')
+@section('contents')
+  <div class="confirm">
+    <h3>メール送信フォーム</h3>
+    <form method="post" action="/teacher/mail/send">
+      @csrf
+      <div>
+        <input type="hidden" name="name" value="{{ $confirm_user['name'] }}">
+        <label>名前：</label>
+        <p>{{ $confirm_user['name'] }}</p>
+      </div>
+      <div>
+        <input type="hidden" name="email" value="{{ $confirm_user['email'] }}">
+        <label>宛先：</label>
+        <p>{{ $confirm_user['email'] }}</p>
+      </div>
+      <div>
+        <input type="hidden" name="body" value="{{ $result['body'] }}">
+        <label>本文：</label>
+        <p>{{ $result['body'] }}</p>
+      </div>
+      <button type="submit">送信</button>
+    </form>
+  </div>
+@endsection
