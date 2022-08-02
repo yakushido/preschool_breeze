@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\Teacher\VerifyEmail;
 
 class Teacher extends Authenticatable implements MustVerifyEmail
 {
@@ -46,5 +47,10 @@ class Teacher extends Authenticatable implements MustVerifyEmail
     public function team()
     {
         return $this->belongsTo('App\Models\Team');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail());
     }
 }

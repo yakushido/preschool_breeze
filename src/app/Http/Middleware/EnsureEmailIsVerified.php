@@ -26,6 +26,8 @@ class EnsureEmailIsVerified
 
                 if(get_class($request->user()) === 'App\Models\User') {
                     $path = 'user.';
+                } elseif(get_class($request->user()) === 'App\Models\Teacher'){
+                $path = 'teacher.';
                 } else {
                     $path = 'admin.';
                 }

@@ -7,7 +7,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('パスワードをお忘れになりましたか？メールアドレスをお知らせいただければ、パスワード再設定用のリンクをメールでお送りしますので、新しいパスワードをお選びください。') }}
         </div>
 
         <!-- Session Status -->
@@ -16,7 +16,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('user.password.email') }}">
             @csrf
 
             <!-- Email Address -->

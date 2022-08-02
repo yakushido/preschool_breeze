@@ -36,8 +36,8 @@ class AttendanceRequest extends FormRequest
     public function messages()
     {
         return [
-            'date.required' => '日付を選択してください',
-            'date.unique' => 'その日は登録されています'
+            'date.required' => '日付を選択してください。',
+            'date.unique' => 'その日は登録されています。'
         ];
     }
 }

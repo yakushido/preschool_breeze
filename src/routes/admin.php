@@ -10,12 +10,18 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\AdminController;
-
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
+use App\Http\Controllers\Admin\DetailController;
 
 Route::middleware('auth:admins')->group(function () {
+
+  // マイページ
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  Route::post('/add', [DashboardController::class, 'add'])->name('add');
+  Route::post('/delete', [DashboardController::class, 'delete'])->name('delete');
+
+  // 詳細
+  Route::get('/detail/{id}', [DetailController::class, 'index']);
+  Route::post('/detail/update/{id}', [DetailController::class, 'update'])->name('detail.update');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -25,6 +31,7 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 Route::post('/register', [RegisteredUserController::class, 'store'])
   ->middleware('guest');
 
+Route::get('/login',[AuthenticatedSessionController::class, 'create']);
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
   ->middleware('guest')
@@ -68,11 +75,3 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
   ->middleware('auth:admins')
   ->name('logout');
-
-// 要認証(Admin)
-Route::group(['middleware' => 'auth:admins'], function () {
-  Route::post('/add', [AdminController::class, 'add'])->name('add');
-  Route::post('/delete', [AdminController::class, 'delete'])->name('delete');
-  Route::get('/update/{id}', [AdminController::class, 'update_show']);
-  Route::post('/update/{id}', [AdminController::class, 'update'])->name('update');
-});

@@ -1,26 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\teacher\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\teacher\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\teacher\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\teacher\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\teacher\Auth\NewPasswordController;
-use App\Http\Controllers\teacher\Auth\PasswordResetLinkController;
-use App\Http\Controllers\teacher\Auth\RegisteredUserController;
-use App\Http\Controllers\teacher\Auth\VerifyEmailController;
-use App\Http\Controllers\teacher\DashboardController;
-use App\Http\Controllers\teacher\AttendanceController;
-use App\Http\Controllers\teacher\DetailController;
-use App\Http\Controllers\teacher\MailController;
+use App\Http\Controllers\Teacher\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Teacher\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Teacher\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Teacher\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Teacher\Auth\NewPasswordController;
+use App\Http\Controllers\Teacher\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Teacher\Auth\RegisteredUserController;
+use App\Http\Controllers\Teacher\Auth\VerifyEmailController;
+use App\Http\Controllers\Teacher\DashboardController;
+use App\Http\Controllers\Teacher\AttendanceController;
+use App\Http\Controllers\Teacher\DetailController;
+use App\Http\Controllers\Teacher\MailController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
-Route::middleware('auth:teachers')->group(function () {
+Route::middleware('auth:teachers', 'verified')->group(function () {
+  
+  //マイページ 
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
   Route::post('/search',[DashboardController::class,'search'])->name('search');
+  
+  // 出欠
   Route::post('/attendance/update',[AttendanceController::class,'update'])->name('attendance.update');
   Route::post('/attendance/delete',[AttendanceController::class,'delete'])->name('attendance.delete');
+
   // 詳細
   Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail.index');
   Route::get('/detail/update/{id}',[DetailController::class,'update_show'])->name('detail.update.show');

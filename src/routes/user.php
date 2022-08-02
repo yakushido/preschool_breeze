@@ -60,12 +60,12 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
   ->middleware('guest')
   ->name('register');
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-  ->middleware('guest')
-  ->name('login');
+Route::get('/user/login', [AuthenticatedSessionController::class, 'create'])
+  ->middleware('guest');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-  ->middleware('guest');
+  ->middleware('guest')
+  ->name('login');
 
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
   ->middleware('guest')

@@ -5,6 +5,11 @@
 <div class="flex">
   <div class="attendance">
     <h3>欠席等の連絡</h3>
+    <div>
+      @foreach ($errors->all() as $error)
+        <p>{{ $error }}</p>
+      @endforeach
+    </div>
     <form action="{{ route('user.attendance.add') }}" method="POST">
     @csrf
       <div>
@@ -28,6 +33,9 @@
         </select>
       </div>
       <div>
+        @foreach($user_attendances as $user_attendance)
+          <input type="hidden" name="id" value="{{ $user_attendance['user_id'] }}">
+        @endforeach
         <button>連絡する</button>
       </div>
     </form>
@@ -44,7 +52,7 @@
       </tr>
       @foreach($user_attendances as $user_attendance)
       <tr>
-        <td>{{ substr($user_attendance['created_at'], 0, 10) }}</td>
+        <td>{{ $user_attendance['date'] }}</td>
         <td>{{ $user_attendance['attendance']['name'] }}</td>
         <td>{{ $user_attendance['reason']['name'] }}</td>
       </tr>

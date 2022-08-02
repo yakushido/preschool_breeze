@@ -25,7 +25,7 @@
                     <button>logout</button>
                 </form>
                 @elseif( !Auth::check() )
-                <a href="{{ route('user.login') }}"><button>login</button></a>
+                <a href="/user/login"><button>login</button></a>
                 @endif
             </div>
 
@@ -43,6 +43,10 @@
     <main>
         @yield('contents')
     </main>
+
+    <footer>
+        <div><a href="/teacher/login/page">教員ログイン</a></div>
+    </footer>
 
     <script>
         const menu = document.getElementById("menu__humbergar");

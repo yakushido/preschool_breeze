@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 use App\Models\Teacher;
 use App\Models\Team;
 
@@ -27,4 +28,27 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', compact('team_lists', 'teachers'));
     }
+
+    public function add(Request $request)
+    {
+        $user = Teacher::create([
+            'name' => $request->name,
+            'team_id' => $request->team_id,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        event(new Registered($user));
+
+        return redirect()->route('admin.dashboard');
+    }
+
+    public function delete(Request $request)
+    {
+        $teacher_delete = Teacher::find($request['id']);
+        $teacher_delete->delete();
+
+        return redirect()->route('admin.dashboard');
+    }
+
 }

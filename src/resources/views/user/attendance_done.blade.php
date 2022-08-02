@@ -4,7 +4,7 @@
 
 <div class="attendance_done">
   <h3>連絡が完了しました。</h3>
-  <a href="/">戻る</a>
+  <a href="/dashboard">戻る</a>
 </div>
 
 @endsection

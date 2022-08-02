@@ -1,9 +1,10 @@
 @extends('admin.layouts.default')
 @section('contents')
-  <div>
+<link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
+  <div class="flex">
 
     <div class="teacher_list">
-      <h2>教員一覧</h2>
+      <h3>教員一覧</h3>
       <table>
         <tr>
           <th>名前</th>
@@ -12,14 +13,14 @@
         </tr>
         @foreach($teachers as $teacher)
           <tr>
-            <td><a href="/admin/update/{{ $teacher['id'] }}">{{ $teacher['name'] }}</a></td>
+            <td><a href="/admin/detail/{{ $teacher['id'] }}">{{ $teacher['name'] }}</a></td>
             <td>{{ $teacher['team']['name'] }}</td>
             <td>{{ $teacher['email'] }}</td>
             <td class="teacher_delete">
               <form action="{{ route('admin.delete') }}" method='POST'>
               @csrf
                 <input type="text" name="id" value="{{ $teacher['id'] }}" hidden>
-                <button>削除</button>
+                <button class="delete_btn">削除</button>
               </form>
             </td>
           </tr>
@@ -28,11 +29,12 @@
     </div>
 
     <div class="teacher_add">
+      <h3>教員の追加</h3>
       <form action="{{ route('admin.add') }}" method="POST">
       @csrf
-        <h2>教員の追加</h2>
         <div>
-          <label>名前：</label><input type="text" name="name">
+          <label>名前：</label>
+          <input type="text" name="name">
         </div>
         <div>
           <label>担当クラス：</label>
@@ -43,14 +45,16 @@
           </select>
         </div>
         <div>
-          <label>メールアドレス</label>
+          <label>メールアドレス：</label>
           <input type="email" name="email">
         </div>
         <div>
-          <label>パスワード</label>
+          <label>パスワード：</label>
           <input type="text" name="password">
         </div>
-        <button>追加</button>
+        <div class="add_btn">
+          <button>追加</button>
+        </div>
       </form>
     </div>
 

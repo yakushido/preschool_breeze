@@ -12,58 +12,20 @@ use App\Models\Reason;
 
 class AttendanceController extends Controller
 {
-    // public function add(AttendanceRequest $request)
-    // {
-    //         if($request->has('attend')){
-    //         UserAttendance::create([
-    //             'user_id' => $request->id,
-    //             'attendance_id' => 1,
-    //             'date' => $request->date
-    //         ]);
-    //         } elseif ($request->has('absence')) {
-    //             UserAttendance::create([
-    //                 'user_id' => $request->id,
-    //                 'attendance_id' => 2,
-    //                 'date' => $request->date
-    //             ]);
-    //         }
-    //         return redirect()->route('teacher.show');
-    // }
-
-    // public function delete($id)
-    // {
-    //     UserAttendance::find($id)->delete();
-
-    //     return redirect()->route('teacher.show');
-    // }
-
-    // public function update($id)
-    // {
-    //     $update_attendance = UserAttendance::find($id);
-
-    //     if($update_attendance['attendance_id'] === 1) {
-    //         $update_attendance['attendance_id'] = 2;
-    //     }elseif ($update_attendance['attendance_id'] === 2) {
-    //         $update_attendance['attendance_id'] = 1;
-    //     }
-    //     $update_attendance->save();
-
-    //     return redirect()->route('teacher.show');
-    // }
 
     public function show()
     {
         $attendances = Attendance::all();
         $reasons = Reason::all();
-        $user_attendances = UserAttendance::where('user_id', Auth::id())->get();
+        $user_attendances = UserAttendance::where('user_id', Auth::id())->orderBy('date', 'desc')->get();
 
         return view('user.attendance', compact('attendances','reasons', 'user_attendances'));
     }
 
-    public function add(Request $request)
+    public function add(AttendanceRequest $request)
     {
         UserAttendance::create([
-            'user_id' => Auth::id(),
+            'user_id' => $request->id,
             'attendance_id' => $request->attendance,
             'reason_id' => $request->reason,
             'date' => $request->date
